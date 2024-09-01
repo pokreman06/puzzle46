@@ -1,0 +1,48 @@
+﻿@page "/"
+@inject StorageService storageService;
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+
+<p>
+    This is a .NET 8 Blazor Web App with Global Server interactivity.
+</p>
+
+<p>
+    We have defined a CascadingAppState component and made it available to all components in the app.
+</p>
+
+<p>
+    We have also defined a scoped service called StorageService and injected it into Home.razor.
+</p>
+
+<p>
+    How can we access the CascadingAppState component INSIDE the StorageService?
+</p>
+
+<p>
+    See the commented code in StorageService to get an idea of what we want to do.
+</p>
+
+<button @onclick="GetMessage">Get Message</button>
+
+<p>@Message</p>
+
+@code {
+
+    private string Message { get; set; } = string.Empty;
+
+    [CascadingParameter]
+    public CascadingAppState AppState { get; set; }
+
+    void GetMessage()
+    {
+        Message = storageService.GetMessage();
+    }
+
+    protected override void OnInitialized()
+    {
+        AppState.Message = "Hello from Home.razor";
+    }
+}
