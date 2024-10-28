@@ -43,6 +43,8 @@
 
     protected override void OnInitialized()
     {
+        storageService.initialize(AppState);
         AppState.Message = "Hello from Home.razor";
+
     }
 }

@@ -7,8 +7,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
-// We added the StorageService to the DI container
+
+// We added the StorageService to the DI containerd
+builder.Services.AddScoped((p) => new CascadingAppState());
 builder.Services.AddScoped<StorageService>();
+
 
 var app = builder.Build();
 

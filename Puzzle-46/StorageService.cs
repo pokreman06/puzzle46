@@ -5,12 +5,12 @@ namespace Puzzle_46;
 public class StorageService
 {
     public string Message { get; set; } = "Hello from my service";
-    //private CascadingAppState _cascadingAppState;
+    private CascadingAppState _cascadingAppState;
 
-    //public StorageService(CascadingAppState cascadingAppState)
-    //{
-    //    _cascadingAppState = cascadingAppState;
-    //}
+    public void initialize(CascadingAppState cascadingAppState)
+    {
+        _cascadingAppState = cascadingAppState;
+    }
 
     public void SetMessage(string message)
     {
@@ -20,8 +20,9 @@ public class StorageService
     public string GetMessage()
     {
         // How can we access the CascadingAppState from here?
+        if (_cascadingAppState != null)
+            return _cascadingAppState.Message;
+        else return Message;
 
-        return Message;
-        //return _cascadingAppState.Message;
     }
 }
